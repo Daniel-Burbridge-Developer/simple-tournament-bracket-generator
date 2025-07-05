@@ -1,0 +1,70 @@
+import { formOptions, useForm } from "@tanstack/react-form";
+import { z } from "zod";
+
+interface Player {
+  firstName: string;
+  lastName: string;
+  avatarUrl: string;
+  stats: {
+    wins: number;
+    losses: number;
+    ties: number;
+  };
+}
+
+const formSchema = z.object({
+  players: z.array(
+    z.object({
+      firstName: z.string().min(1, { message: "First name is required" }),
+      lastName: z.string().min(1, { message: "Last name is required" }),
+      avatarUrl: z.string().url().min(1, { message: "Avatar URL is required" }),
+      stats: z.object({
+        wins: z.number().min(0, { message: "Wins must be at least 0" }),
+        losses: z.number().min(0, { message: "Losses must be at least 0" }),
+        ties: z.number().min(0, { message: "Ties must be at least 0" }),
+      }),
+    })
+  ),
+});
+
+const TournamentEntryForm = () => {
+  const defaultPlayer: Player = {
+    firstName: "",
+    lastName: "",
+    avatarUrl: "",
+    stats: {
+      wins: 0,
+      losses: 0,
+      ties: 0,
+    },
+  };
+
+  const formOpts = formOptions({
+    defaultValues: defaultPlayer,
+  });
+
+  const form = useForm({
+    ...formOpts,
+    validators: {
+    },
+    onSubmit: ({ value }) => {
+      console.log(value);
+    },
+  });
+
+  return (
+    <form.Field
+      name="firstName"
+      children={(field) => (
+        <>
+          <input
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChange={(e) => field.handleChange(e.target.value)}
+          />
+          <FieldInfo field={field} />
+        </>
+      )}
+    />
+  );
+};
