@@ -17,6 +17,11 @@ const { useAppForm } = createFormHook({
   formContext,
 });
 
+const EntryFormSchema = z.object({
+  username: z.string().min(1, 'Username is required'),
+  age: z.number().min(13, 'Age must be at least 13'),
+});
+
 const TournamentEntryForm = () => {
   const form = useAppForm({
     defaultValues: {
@@ -25,10 +30,7 @@ const TournamentEntryForm = () => {
     },
     validators: {
       // Pass a schema or function to validate
-      onChange: z.object({
-        username: z.string().min(1, 'Username is required'),
-        age: z.number().min(13, 'Age must be at least 13'),
-      }),
+      onChange: EntryFormSchema,
     },
     onSubmit: ({ value }) => {
       // Do something with form data
@@ -50,11 +52,13 @@ const TournamentEntryForm = () => {
         {/* Use `form.AppField` to render a component bound to a single field */}
         <form.AppField
           name="username"
+          mode="array"
           children={(field) => <field.TextField label="Full Name" />}
         />
         {/* The "name" property will throw a TypeScript error if typo'd  */}
         <form.AppField
           name="age"
+          mode="array"
           children={(field) => <field.NumberField label="Age" />}
         />
         {/* Components in `form.AppForm` have access to the form context */}
