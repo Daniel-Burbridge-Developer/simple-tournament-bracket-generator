@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { TournmentEntryForm } from "~/components/TournmentEntryForm";
+import TournamentEntryForm from "~/components/TournamentEntryForm";
 export const Route = createFileRoute("/")({
   component: Home,
 });
@@ -28,7 +28,7 @@ function Home() {
           Secondary Button
         </button>
       </div>
-      <TournmentEntryForm />
+      <TournamentEntryForm />
     </div>
   );
 }
