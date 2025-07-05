@@ -1,9 +1,9 @@
-import { createFormHook } from "@tanstack/react-form";
-import { fieldContext, formContext } from "~/hooks/form-context";
-import { TextField } from "./form-ui/text-field";
-import { NumberField } from "./form-ui/number-field";
-import { SubmitButton } from "./form-ui/submit-button";
-import { z } from "zod";
+import { createFormHook } from '@tanstack/react-form';
+import { fieldContext, formContext } from '~/hooks/form-context';
+import { TextField } from './form-ui/text-field';
+import { NumberField } from './form-ui/number-field';
+import { SubmitButton } from './form-ui/submit-button';
+import { z } from 'zod';
 
 const { useAppForm } = createFormHook({
   fieldComponents: {
@@ -20,14 +20,14 @@ const { useAppForm } = createFormHook({
 const TournamentEntryForm = () => {
   const form = useAppForm({
     defaultValues: {
-      username: "",
+      username: '',
       age: 18,
     },
     validators: {
       // Pass a schema or function to validate
       onChange: z.object({
-        username: z.string().min(1, "Username is required"),
-        age: z.number().min(13, "Age must be at least 13"),
+        username: z.string().min(1, 'Username is required'),
+        age: z.number().min(13, 'Age must be at least 13'),
       }),
     },
     onSubmit: ({ value }) => {
@@ -37,8 +37,8 @@ const TournamentEntryForm = () => {
   });
 
   return (
-    <div className="max-w-md w-full mx-auto mt-8 bg-white dark:bg-card shadow-lg rounded-xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700 flex flex-col gap-6">
-      <h1 className="text-2xl font-bold text-center">Personal Information</h1>
+    <div className="mx-auto mt-8 flex w-full max-w-md flex-col gap-6 rounded-xl border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-card sm:p-8">
+      <h1 className="text-center text-2xl font-bold">Personal Information</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();

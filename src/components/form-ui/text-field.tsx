@@ -15,7 +15,7 @@ export function TextField({ label }: { label: string }) {
         <div className="text-red-500 text-sm mt-1">
           {field.state.meta.errors.map((error) => error.message).join(", ")}
         </div>
-      )}
+        )   }
     </label>
   );
 }
