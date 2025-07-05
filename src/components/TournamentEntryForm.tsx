@@ -21,13 +21,13 @@ const TournamentEntryForm = () => {
   const form = useAppForm({
     defaultValues: {
       username: "",
-      age: 0,
+      age: 18,
     },
     validators: {
       // Pass a schema or function to validate
       onChange: z.object({
-        username: z.string(),
-        age: z.number().min(13),
+        username: z.string().min(1, "Username is required"),
+        age: z.number().min(13, "Age must be at least 13"),
       }),
     },
     onSubmit: ({ value }) => {
@@ -37,29 +37,32 @@ const TournamentEntryForm = () => {
   });
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        form.handleSubmit();
-      }}
-    >
-      <h1>Personal Information</h1>
-      {/* Components are bound to `form` and `field` to ensure extreme type safety */}
-      {/* Use `form.AppField` to render a component bound to a single field */}
-      <form.AppField
-        name="username"
-        children={(field) => <field.TextField label="Full Name" />}
-      />
-      {/* The "name" property will throw a TypeScript error if typo'd  */}
-      <form.AppField
-        name="age"
-        children={(field) => <field.NumberField label="Age" />}
-      />
-      {/* Components in `form.AppForm` have access to the form context */}
-      <form.AppForm>
-        <form.SubmitButton label="Submit" />
-      </form.AppForm>
-    </form>
+    <div className="max-w-md w-full mx-auto mt-8 bg-white dark:bg-card shadow-lg rounded-xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700 flex flex-col gap-6">
+      <h1 className="text-2xl font-bold text-center">Personal Information</h1>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.handleSubmit();
+        }}
+        className="space-y-6"
+      >
+        {/* Components are bound to `form` and `field` to ensure extreme type safety */}
+        {/* Use `form.AppField` to render a component bound to a single field */}
+        <form.AppField
+          name="username"
+          children={(field) => <field.TextField label="Full Name" />}
+        />
+        {/* The "name" property will throw a TypeScript error if typo'd  */}
+        <form.AppField
+          name="age"
+          children={(field) => <field.NumberField label="Age" />}
+        />
+        {/* Components in `form.AppForm` have access to the form context */}
+        <form.AppForm>
+          <form.SubmitButton label="Submit" />
+        </form.AppForm>
+      </form>
+    </div>
   );
 };
 
