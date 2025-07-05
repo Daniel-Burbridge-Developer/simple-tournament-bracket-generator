@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import TournamentEntryForm from "~/components/TournamentEntryFormShadCN";
+import TournamentEntryForm from "~/components/TournamentEntryForm";
 export const Route = createFileRoute("/")({
   component: Home,
 });
