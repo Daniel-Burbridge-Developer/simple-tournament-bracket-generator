@@ -186,7 +186,7 @@ export const ParticipantEntryForm = ({
             selector={(state) => [state.canSubmit, state.isValidating]}
             children={([canSubmit, isValidating]) => (
               <Button variant="default" onClick={form.handleSubmit} disabled={!canSubmit || isValidating}>
-                'Create Tournament'
+                Create Tournament
               </Button>
             )}
           />
