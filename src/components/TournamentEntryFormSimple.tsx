@@ -165,26 +165,20 @@ export const ParticipantEntryForm = ({
             selector={(state) => state.errors}
             children={(errors) => {
               // Debug: Log all errors to see what's being generated
-              console.log('All form errors:', errors);
-
               // Extract only participants array-level errors
               const participantsErrors = errors
                 .filter((errorObj) => errorObj && errorObj.participants)
                 .flatMap((errorObj) => errorObj!.participants)
                 .map((error) => error.message);
 
-              console.log('Participants errors:', participantsErrors);
-
               return (
-                participantsErrors.length > 0 &&
-                (console.log('participantsErrors', participantsErrors),
-                (
+                participantsErrors.length > 0 && (
                   <Alert variant="destructive">
                     <AlertCircle className="h-4 w-4" />
                     <AlertTitle>Validation Error</AlertTitle>
                     <AlertDescription>{participantsErrors.join(', ')}</AlertDescription>
                   </Alert>
-                ))
+                )
               );
             }}
           />
@@ -192,14 +186,7 @@ export const ParticipantEntryForm = ({
             selector={(state) => [state.canSubmit, state.isValidating]}
             children={([canSubmit, isValidating]) => (
               <Button variant="default" onClick={form.handleSubmit} disabled={!canSubmit || isValidating}>
-                {isValidating ? (
-                  <>
-                    <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-                    Validating...
-                  </>
-                ) : (
-                  'Create Tournament'
-                )}
+                'Create Tournament'
               </Button>
             )}
           />
