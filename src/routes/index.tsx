@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import GeminiAttemptForm from "~/components/form-ui/gemini-attempt-form";
 import TournamentEntryForm from "~/components/TournamentEntryForm";
 export const Route = createFileRoute("/")({
   component: Home,

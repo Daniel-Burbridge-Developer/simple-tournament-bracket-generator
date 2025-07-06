@@ -48,6 +48,7 @@ const TournamentEntryForm = () => {
         {/* Use `form.AppField` to render a component bound to a single field */}
         <form.AppField
           name="participants"
+          mode="array"
           children={(field) => <field.ArrayField label="Tournament Participants" itemLabel="Participant" minItems={2} maxItems={16} />}
         />
         {/* Components in `form.AppForm` have access to the form context */}
