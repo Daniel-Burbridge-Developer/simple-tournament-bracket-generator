@@ -12,6 +12,9 @@ import { Meta } from '@tanstack/react-start';
 import { FieldErrors } from './form-ui/field-errors';
 import { toast } from 'sonner';
 
+// INVESTIGATE  "FIELD API" to further improve forms modularity
+// LOOK at field-errors as an example, I think FIELD API would go where AnyFieldMeta is.
+
 const MIN_PARTICIPANTS = 2;
 const MAX_PARTICIPANTS = 16;
 

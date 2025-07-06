@@ -1,7 +1,7 @@
-import { useFieldContext } from "~/hooks/form-context";
-import { Input } from "../ui/input";
-import { FieldErrors } from "./field-errors";
-import { Label } from "../ui/label";
+import { useFieldContext } from '~/hooks/form-context';
+import { Input } from '../ui/input';
+import { FieldErrors } from './field-errors';
+import { Label } from '../ui/label';
 
 export function TextField({ label }: { label: string }) {
   // The `Field` infers that it should have a `value` type of `string`
