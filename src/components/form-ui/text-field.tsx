@@ -1,21 +1,21 @@
 import { useFieldContext } from "~/hooks/form-context";
 import { Input } from "../ui/input";
+import { FieldErrors } from "./field-errors";
+import { Label } from "../ui/label";
 
 export function TextField({ label }: { label: string }) {
   // The `Field` infers that it should have a `value` type of `string`
   const field = useFieldContext<string>();
   return (
-    <label>
-      <div>{label}</div>
+    <div className="space-y-1">
+      <Label htmlFor={field.name}>{label}</Label>
       <Input
+        id={field.name}
         value={field.state.value}
         onChange={(e) => field.handleChange(e.target.value)}
+        onBlur={() => field.handleBlur()}
       />
-      {field.state.meta.errors.length > 0 && (
-        <div className="text-red-500 text-sm mt-1">
-          {field.state.meta.errors.map((error) => error.message).join(", ")}
-        </div>
-        )   }
-    </label>
+      <FieldErrors meta={field.state.meta} />
+    </div>
   );
 }
