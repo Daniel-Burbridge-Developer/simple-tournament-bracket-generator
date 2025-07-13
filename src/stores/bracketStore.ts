@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-import { Bracket } from '@/types/brackets';
+import { SingleEliminationBracket } from '@/types/brackets';
 
 interface BracketState {
-  bracket: Bracket[];
-  addBracket: (bracket: Bracket) => void;
-  updateBracket: (id: string, bracket: Bracket) => void;
+  bracket: SingleEliminationBracket[];
+  addBracket: (bracket: SingleEliminationBracket) => void;
+  updateBracket: (id: string, bracket: SingleEliminationBracket) => void;
   deleteBracket: (id: string) => void;
 }
 
@@ -19,5 +19,3 @@ export const useBracketStore = create<BracketState>()((set) => ({
   deleteBracket: (id) =>
     set((state) => ({ bracket: state.bracket.filter((b) => b.id !== id) })),
 }));
-
-

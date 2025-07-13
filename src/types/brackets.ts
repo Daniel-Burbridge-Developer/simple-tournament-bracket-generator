@@ -1,7 +1,8 @@
 import { Participant } from './participants';
 
-export interface Bracket {
+export interface SingleEliminationBracket {
   id: string;
   name: string;
-  participants: Participant[];
+  participants: [Participant, Participant];
+  winner: Participant;
 }
