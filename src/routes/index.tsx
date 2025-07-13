@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { ParticipantEntryForm } from '~/components/ParticipantEntryFormSimple';
 import ParticipantList from '~/components/ParticipantList';
+import { BracketList } from '~/components/BracketList';
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -32,6 +33,7 @@ function Home() {
       </div>
       <ParticipantEntryForm />
       <ParticipantList />
+      <BracketList />
     </div>
   );
 }

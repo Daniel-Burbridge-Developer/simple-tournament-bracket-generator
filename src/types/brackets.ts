@@ -4,5 +4,5 @@ export interface SingleEliminationBracket {
   id: string;
   name: string;
   participants: [Participant, Participant];
-  winner: Participant;
+  winner: Participant | null;
 }

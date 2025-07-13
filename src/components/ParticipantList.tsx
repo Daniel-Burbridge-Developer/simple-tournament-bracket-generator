@@ -1,9 +1,12 @@
 import { useParticipantStore } from '~/stores/participantStore';
 import type { Participant } from '@/types/participants';
 import { Card } from './ui/card';
+import { useBracketStore } from '~/stores/bracketStore';
+import { Button } from './ui/button';
 
 const ParticipantList = () => {
   const { participants } = useParticipantStore();
+  const { generateBrackets, resetBrackets } = useBracketStore();
   const defaultUrl =
     'https://hep3ebftos.ufs.sh/f/s3a8aj7Ld5akdGkoLfMkhuS4rbz0HNFRG8AWEnmViTapJ6fc';
 
@@ -38,6 +41,10 @@ const ParticipantList = () => {
           </div>
         </Card>
       ))}
+      <div className="flex flex-col gap-2">
+        <Button onClick={() => generateBrackets(participants)}>Generate</Button>
+        <Button onClick={() => resetBrackets()}>Reset</Button>
+      </div>
     </div>
   );
 };

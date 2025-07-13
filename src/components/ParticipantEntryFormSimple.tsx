@@ -15,6 +15,7 @@ import { z } from 'zod';
 import { FieldErrors } from './form-ui/field-errors';
 import { toast } from 'sonner';
 import { useParticipantStore } from '@/stores/participantStore';
+import { useBracketStore } from '@/stores/bracketStore';
 
 // INVESTIGATE  "FIELD API" to further improve forms modularity
 // LOOK at field-errors as an example, I think FIELD API would go where AnyFieldMeta is.
@@ -64,6 +65,7 @@ export const ParticipantEntryForm = ({
   maxParticipants = MAX_PARTICIPANTS,
 }: ParticipantEntryFormProps) => {
   const { addParticipants, resetParticipants } = useParticipantStore();
+  const { generateBrackets } = useBracketStore();
 
   const form = useForm({
     defaultValues: {
@@ -79,6 +81,7 @@ export const ParticipantEntryForm = ({
     onSubmit: ({ value }) => {
       resetParticipants();
       addParticipants(value.participants);
+      generateBrackets(value.participants);
       toast.success('Tournament created successfully', {
         description: 'You can now view the tournament',
       });
